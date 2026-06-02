@@ -1,0 +1,585 @@
+:root {
+    --verde-jm: #003f1d;
+    --dourado-jm: #b9822e;
+    --dourado-hover: #a87527;
+    --bege-jm: #f5f0e4;
+    --texto-verde: #064927;
+    --branco: #ffffff;
+    --preto: #111111;
+    --fonte-titulo: 'Playfair Display', serif;
+    --fonte-texto: 'Inter', Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bege-jm);
+    font-family: var(--fonte-texto);
+    color: var(--preto);
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+}
+
+/* Hero */
+.hero {
+    min-height: 620px;
+    background-color: var(--verde-jm);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+    padding: 100px 0 155px;
+    animation: heroFade 1.4s ease;
+}
+
+@keyframes heroFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -100px;
+}
+
+.logo-jm-img {
+    width: 690px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.18));
+}
+
+.brand-name {
+    font-family: var(--fonte-titulo);
+    font-size: 4.6rem;
+    color: var(--branco);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.brand-m {
+    color: var(--dourado-jm);
+}
+
+.brand-subtitle {
+    font-family: var(--fonte-texto);
+    font-size: 1.5rem;
+    color: var(--dourado-jm);
+}
+
+.btn-agendamento {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dourado-jm) !important;
+    color: var(--branco) !important;
+    border: none !important;
+    border-radius: 999px;
+    min-width: 240px;
+    height: 46px;
+    font-family: var(--fonte-texto);
+    font-size: 1rem;
+    text-decoration: none;
+    z-index: 20;
+    transition: background-color 0.3s;
+}
+
+.btn-agendamento:hover {
+    background-color: var(--dourado-hover) !important;
+}
+
+/* Linhas douradas */
+.gold-line {
+    position: absolute;
+    top: -150px;
+    width: 55%;
+    height: 190px;
+    border-bottom: 2px solid var(--dourado-jm);
+    border-radius: 0 0 50% 50%;
+    z-index: 0;
+}
+
+.gold-line-left {
+    left: -14%;
+}
+
+.gold-line-right {
+    right: -7%;
+}
+
+/* Wave */
+.hero-wave {
+    position: absolute;
+    left: 0;
+    bottom: -11px;
+    width: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.hero-wave svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.hero-wave-desktop {
+    height: 171px;
+}
+
+.hero-wave-mobile {
+    display: none;
+}
+
+.wave-fill {
+    fill: var(--bege-jm);
+}
+
+.wave-stroke {
+    fill: none;
+    stroke: var(--dourado-jm);
+    stroke-width: 4;
+}
+
+/* Barra superior */
+.top-actions {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 40;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.top-actions a,
+.top-actions .user-greeting {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(185, 130, 46, 0.55);
+    background: rgba(0, 63, 29, 0.88);
+    color: var(--branco);
+    font-family: var(--fonte-texto);
+    font-size: 0.82rem;
+    text-decoration: none;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.top-actions a:hover {
+    background: var(--dourado-jm);
+    color: var(--branco);
+}
+
+.top-actions .user-greeting {
+    background: transparent;
+    border: none;
+    font-size: 0.9rem;
+    color: var(--dourado-jm);
+    padding-right: 0;
+}
+
+.top-actions .btn-admin-link {
+    background-color: var(--dourado-jm) !important;
+    border-color: var(--dourado-jm) !important;
+    font-weight: 500;
+    color: var(--verde-jm) !important;
+}
+
+.top-actions .btn-admin-link:hover {
+    background-color: var(--dourado-hover) !important;
+    color: var(--branco) !important;
+}
+
+/* Seções comuns */
+.studio-section {
+    background-color: var(--bege-jm);
+    position: relative;
+    z-index: 5;
+}
+
+.studio-container {
+    padding-top: 70px;
+    padding-bottom: 90px;
+}
+
+.studio-title {
+    font-family: var(--fonte-titulo);
+    color: var(--dourado-jm);
+    font-size: 1.55rem;
+    font-weight: 600;
+}
+
+.section-subtitle {
+    color: var(--preto);
+    font-size: 1.1rem;
+}
+
+.studio-img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.message-section,
+.procedures-section {
+    background: linear-gradient(rgba(245, 240, 228, 0.94), rgba(245, 240, 228, 0.94)),
+        url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1400&q=80");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.message-container {
+    max-width: 1250px;
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+
+.message-img {
+    max-width: 430px;
+    height: 500px;
+    border-radius: 10px;
+}
+
+.message-card {
+    background-color: var(--verde-jm);
+    color: var(--dourado-jm);
+    padding: 55px 70px;
+    border-radius: 20px;
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 1.45rem;
+    line-height: 1.8;
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.procedures-container {
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+
+.procedures-title {
+    color: var(--texto-verde);
+    font-family: var(--fonte-titulo);
+    font-size: 1.55rem;
+    margin-bottom: 42px;
+}
+
+.procedures-gallery {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+}
+
+.procedure-img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.location-section {
+    background-color: var(--bege-jm);
+}
+
+.location-container {
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+.location-title {
+    font-family: var(--fonte-titulo);
+    color: var(--texto-verde);
+    font-size: 1.6rem;
+    font-style: italic;
+}
+
+.location-gallery {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.location-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Footer */
+.footer-section {
+    background-color: var(--verde-jm);
+    color: var(--branco);
+    padding: 55px 0 28px;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 8%;
+    width: 84%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dourado-jm), transparent);
+}
+
+.footer-container {
+    max-width: 980px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: var(--fonte-titulo);
+    font-size: 4rem;
+    line-height: 0.8;
+    margin-bottom: 12px;
+}
+
+.footer-logo-j {
+    color: var(--branco);
+}
+
+.footer-logo-m {
+    color: var(--dourado-jm);
+    margin-left: -14px;
+}
+
+.footer-brand h2 {
+    font-size: 1.7rem;
+    margin-bottom: 4px;
+}
+
+.footer-brand p {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    margin-bottom: 35px;
+}
+
+.footer-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-bottom: 35px;
+}
+
+.footer-item {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(185, 130, 46, 0.45);
+    border-radius: 14px;
+    padding: 18px 16px;
+    color: var(--branco);
+    text-decoration: none;
+}
+
+.footer-item:hover {
+    border-color: var(--dourado-jm);
+    background-color: rgba(255, 255, 255, 0.09);
+}
+
+.footer-item span {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--dourado-jm);
+    margin-bottom: 6px;
+}
+
+.footer-item strong {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 18px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 0.75rem;
+    opacity: 0.65;
+}
+
+/* Responsivo global (hero, wave, imagens) */
+@media (max-width: 992px) {
+    .brand-name {
+        font-size: 3.8rem;
+    }
+
+    .hero-content {
+        padding: 80px 0 130px;
+    }
+
+    .logo-jm-img {
+        width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 310px;
+    }
+
+    .hero-content {
+        padding: 42px 0 92px;
+    }
+
+    .hero-wave-desktop {
+        display: none;
+    }
+
+    .hero-wave-mobile {
+        display: block;
+        height: 82px;
+    }
+
+    .brand-name {
+        font-size: 1.8rem;
+    }
+
+    .brand-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .logo-jm-img {
+        width: 280px;
+    }
+
+    .top-actions {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        justify-content: center;
+        background: rgba(0, 63, 29, 0.9);
+        padding: 8px 10px;
+        border-radius: 30px;
+    }
+
+    .top-actions a,
+    .top-actions .user-greeting {
+        font-size: 0.75rem;
+        padding: 5px 10px;
+    }
+
+    .studio-img {
+        height: 210px;
+    }
+
+    .message-section,
+    .procedures-section {
+        background-attachment: scroll;
+    }
+
+    .message-container {
+        padding: 35px 0;
+    }
+
+    .message-img {
+        max-width: 150px !important;
+        height: 150px !important;
+    }
+
+    .message-card {
+        font-size: 0.9rem;
+        padding: 20px;
+    }
+
+    .procedures-title {
+        font-size: 1.2rem;
+    }
+
+    .procedures-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .procedure-img {
+        height: 200px !important;
+    }
+
+    .location-gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .location-img {
+        height: 150px;
+    }
+
+    .footer-info {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-logo {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .brand-name {
+        font-size: 1.6rem;
+    }
+
+    .hero .btn-agendamento {
+        min-width: 200px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .procedures-gallery {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .procedure-img {
+        height: 150px !important;
+    }
+}
+/* Centralizar os ícones/sociais no rodapé */
+.footer-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.footer-item {
+    text-align: center;
+    min-width: 180px;
+}

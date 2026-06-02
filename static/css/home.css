@@ -1,0 +1,517 @@
+/* ========== HOME.CSS - Estilos exclusivos da página principal ========== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    --verde-jm: #003f1d;
+    --dourado-jm: #b9822e;
+    --dourado-hover: #a06e20;
+    --bege-jm: #f5f0e4;
+    --branco: #ffffff;
+    --cinza-claro: #f8f9fa;
+    --cinza-borda: #e2dacf;
+    --fonte-titulo: 'Playfair Display', serif;
+    --fonte-texto: 'Inter', sans-serif;
+}
+
+/* Hero */
+.hero {
+    min-height: 620px;
+    background-color: var(--verde-jm);
+    position: relative;
+    overflow: hidden;
+}
+.hero-content {
+    position: relative;
+    z-index: 5;
+    padding: 100px 0 155px;
+    animation: heroFade 1.4s ease;
+}
+@keyframes heroFade {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -50px;
+}
+.logo-jm-img {
+    width: 690px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.18));
+}
+/* Centralizar os ícones/sociais no rodapé */
+.footer-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.footer-item {
+    text-align: center;
+    min-width: 180px;
+}
+.brand-name {
+    font-family: var(--fonte-titulo);
+    font-size: 4.6rem;
+    color: var(--branco);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.brand-m { color: var(--dourado-jm); }
+.brand-subtitle {
+    font-family: var(--fonte-texto);
+    font-size: 1.5rem;
+    color: var(--dourado-jm);
+}
+.btn-agendamento {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--dourado-jm) !important;
+    color: var(--branco) !important;
+    border: none !important;
+    border-radius: 999px;
+    min-width: 240px;
+    height: 46px;
+    font-family: var(--fonte-texto);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.btn-agendamento:hover {
+    background-color: var(--dourado-hover) !important;
+}
+.gold-line {
+    position: absolute;
+    top: -150px;
+    width: 55%;
+    height: 190px;
+    border-bottom: 2px solid var(--dourado-jm);
+    border-radius: 0 0 50% 50%;
+    z-index: 0;
+}
+.gold-line-left { left: -14%; }
+.gold-line-right { right: -7%; }
+.hero-wave {
+    position: absolute;
+    left: 0;
+    bottom: -11px;
+    width: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+.hero-wave svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.hero-wave-desktop { height: 171px; }
+.hero-wave-mobile { display: none; }
+.wave-fill { fill: var(--bege-jm); }
+.wave-stroke {
+    fill: none;
+    stroke: var(--dourado-jm);
+    stroke-width: 4;
+}
+
+/* Top actions */
+.top-actions {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 40;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+.top-actions a,
+.top-actions .user-greeting {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 34px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(185, 130, 46, 0.55);
+    background: rgba(0, 63, 29, 0.88);
+    color: var(--branco);
+    font-family: var(--fonte-texto);
+    font-size: 0.82rem;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.top-actions a:hover {
+    background: var(--dourado-jm);
+    color: var(--branco);
+}
+.top-actions .user-greeting {
+    background: transparent;
+    border: none;
+    font-size: 0.9rem;
+    color: var(--dourado-jm);
+    padding-right: 0;
+}
+.top-actions .btn-admin-link {
+    background-color: var(--dourado-jm) !important;
+    border-color: var(--dourado-jm) !important;
+    font-weight: 500;
+    color: var(--verde-jm) !important;
+}
+.top-actions .btn-admin-link:hover {
+    background-color: var(--dourado-hover) !important;
+    color: var(--branco) !important;
+}
+
+/* Welcome message */
+.welcome-message {
+    background: linear-gradient(135deg, var(--verde-jm) 0%, #0a5a2e 100%);
+    color: white;
+    border-radius: 32px;
+    padding: 1.8rem 2rem;
+    margin: 2rem auto;
+    max-width: 80%;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.welcome-message h1 {
+    font-family: var(--fonte-titulo);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+.welcome-message p {
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* Seção Meus Agendamentos - profissional e atrativa */
+.agendamentos-section {
+    background: rgba(255,255,240,0.5);
+    border-radius: 56px;
+    padding: 2rem 1rem 3rem;
+    margin: 2rem auto !important;
+    backdrop-filter: blur(2px);
+}
+.section-header .section-title {
+    font-family: var(--fonte-titulo);
+    color: var(--verde-jm);
+    font-size: 2.2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+.title-divider {
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--dourado-jm), #c9a86b, transparent);
+    margin: 10px auto 0;
+    border-radius: 4px;
+}
+.section-subtitle {
+    color: #5e5a52;
+    font-size: 0.95rem;
+}
+.agendamentos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.agendamento-card-modern {
+    background: white;
+    border-radius: 36px;
+    padding: 1rem 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+    border: 1px solid rgba(185,130,46,0.2);
+}
+.agendamento-card-modern:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.08);
+    border-color: var(--dourado-jm);
+}
+.card-icon i {
+    font-size: 2.4rem;
+    color: var(--dourado-jm);
+    background: rgba(185,130,46,0.1);
+    padding: 12px;
+    border-radius: 60px;
+}
+.card-info {
+    flex: 2;
+}
+.card-info strong {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--verde-jm);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.card-info span {
+    font-size: 0.9rem;
+    color: #6c5d4b;
+}
+.card-info span i {
+    margin-right: 5px;
+    font-size: 0.8rem;
+}
+.badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.3px;
+}
+.badge-status.pendente {
+    background: #fff3cd;
+    color: #856404;
+    border-left: 3px solid #ffc107;
+}
+.badge-status.confirmado {
+    background: #d4edda;
+    color: #155724;
+    border-left: 3px solid #28a745;
+}
+.badge-status.cancelado {
+    background: #f8d7da;
+    color: #721c24;
+    border-left: 3px solid #dc3545;
+}
+.empty-state {
+    background: white;
+    border-radius: 40px;
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+}
+.empty-state .display-1 {
+    color: var(--dourado-jm);
+    opacity: 0.5;
+}
+.empty-state .btn-agendamento {
+    background-color: var(--verde-jm) !important;
+}
+.empty-state .btn-agendamento:hover {
+    background-color: #0a5a2e !important;
+}
+
+/* Studio section */
+.studio-section {
+    background-color: var(--bege-jm);
+    position: relative;
+    z-index: 5;
+}
+.studio-container {
+    padding-top: 70px;
+    padding-bottom: 90px;
+}
+.studio-title {
+    font-family: var(--fonte-titulo);
+    color: var(--dourado-jm);
+    font-size: 1.55rem;
+    font-weight: 600;
+}
+.studio-gallery {
+    margin-top: 20px;
+}
+.studio-img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 24px;
+    transition: transform 0.3s;
+}
+.studio-img:hover {
+    transform: scale(1.02);
+}
+/* Message section */
+.message-section {
+    background: linear-gradient(rgba(245, 240, 228, 0.94), rgba(245, 240, 228, 0.94)),
+        url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1400&q=80");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.message-container {
+    max-width: 1250px;
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+.message-img {
+    max-width: 430px;
+    height: 500px;
+    border-radius: 32px;
+}
+.message-card {
+    background-color: var(--verde-jm);
+    color: var(--dourado-jm);
+    padding: 55px 70px;
+    border-radius: 32px;
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 1.45rem;
+    line-height: 1.8;
+}
+.procedures-section {
+    background: var(--bege-jm);
+}
+.procedures-container {
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+.procedures-title {
+    color: var(--verde-jm);
+    font-family: var(--fonte-titulo);
+    font-size: 1.8rem;
+    margin-bottom: 42px;
+}
+.procedures-gallery {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+}
+.procedure-img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 24px;
+    transition: transform 0.3s;
+}
+.procedure-img:hover {
+    transform: scale(1.02);
+}
+.location-section {
+    background-color: var(--bege-jm);
+}
+.location-container {
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+.location-title {
+    font-family: var(--fonte-titulo);
+    color: var(--verde-jm);
+    font-size: 1.8rem;
+}
+.location-gallery {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+.location-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 24px;
+}
+/* Footer */
+.footer-section {
+    background-color: var(--verde-jm);
+    color: var(--branco);
+    padding: 55px 0 28px;
+    position: relative;
+}
+.footer-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 8%;
+    width: 84%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dourado-jm), transparent);
+}
+.footer-container {
+    max-width: 980px;
+    margin: 0 auto;
+    text-align: center;
+}
+.footer-logo {
+    font-family: var(--fonte-titulo);
+    font-size: 4rem;
+    line-height: 0.8;
+    margin-bottom: 12px;
+}
+.footer-logo-j { color: var(--branco); }
+.footer-logo-m {
+    color: var(--dourado-jm);
+    margin-left: -14px;
+}
+.footer-brand h2 { font-size: 1.7rem; }
+.footer-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-bottom: 35px;
+}
+.footer-item {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(185,130,46,0.45);
+    border-radius: 20px;
+    padding: 18px 16px;
+    color: var(--branco);
+    text-decoration: none;
+    transition: 0.2s;
+}
+.footer-item:hover {
+    border-color: var(--dourado-jm);
+    background: rgba(255,255,255,0.09);
+}
+.footer-item span {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--dourado-jm);
+}
+.footer-item strong { font-size: 0.9rem; }
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 18px;
+}
+/* Responsivo */
+@media (max-width: 992px) {
+    .brand-name { font-size: 3.8rem; }
+    .logo-jm-img { width: 500px; }
+}
+@media (max-width: 768px) {
+    .hero { min-height: 310px; }
+    .hero-content { padding: 42px 0 92px; }
+    .hero-wave-desktop { display: none; }
+    .hero-wave-mobile { display: block; height: 82px; }
+    .brand-name { font-size: 1.8rem; }
+    .brand-subtitle { font-size: 0.9rem; }
+    .logo-jm-img { width: 280px; }
+    .top-actions {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        justify-content: center;
+        background: rgba(0,63,29,0.95);
+        border-radius: 40px;
+    }
+    .welcome-message { max-width: 95%; }
+    .agendamento-card-modern { flex-direction: column; text-align: center; }
+    .card-icon i { margin-bottom: 8px; }
+    .procedures-gallery { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .procedure-img { height: 200px; }
+    .location-gallery { grid-template-columns: 1fr; }
+    .footer-info { grid-template-columns: 1fr; }
+    .message-img { max-width: 200px; height: auto; }
+    .message-card { padding: 30px 20px; font-size: 1.1rem; }
+}
+@media (max-width: 576px) {
+    .brand-name { font-size: 1.6rem; }
+    .section-header .section-title { font-size: 1.6rem; }
+    .agendamento-card-modern { padding: 1rem; }
+}

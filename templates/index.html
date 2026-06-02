@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joycimara Marques | Studio JM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    
+    <style>
+        .footer-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        .footer-item {
+            min-width: 180px;
+        }
+        @media (max-width: 576px) {
+            .footer-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-actions">
+        {% if current_user.is_authenticated %}
+            <span class="user-greeting"><i class="bi bi-person-circle"></i> Olá, {{ current_user.nome }}</span>
+            {% if current_user.papel == 'admin' %}
+                <a href="{{ url_for('admin') }}" class="btn-admin-link"><i class="bi bi-shield-lock"></i> Admin</a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}"><i class="bi bi-box-arrow-right"></i> Sair</a>
+        {% else %}
+            <a href="{{ url_for('login') }}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+            <a href="{{ url_for('cadastro') }}"><i class="bi bi-person-plus"></i> Cadastro</a>
+        {% endif %}
+    </div>
+
+    <header class="hero position-relative overflow-hidden">
+        <div class="hero-lines position-absolute top-0 start-0 w-100">
+            <span class="gold-line gold-line-left"></span>
+            <span class="gold-line gold-line-right"></span>
+        </div>
+        <section class="hero-content position-relative text-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <div class="logo-container">
+                            <img src="{{ url_for('static', filename='img/logo-jm.png') }}" alt="Logo JM" class="logo-jm-img">
+                        </div>
+                        <h1 class="brand-name mb-1">
+                            Joycimara <span class="brand-m">M</span><span>arques</span>
+                        </h1>
+                        <p class="brand-subtitle mb-3">
+                            Cílios &amp; Sobrancelhas
+                        </p>
+                        {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('agendamento') }}" class="btn btn-agendamento rounded-pill px-5">
+                                <i class="bi bi-calendar-plus"></i> Agendamento
+                            </a>
+                        {% else %}
+                            <a href="{{ url_for('login', next=url_for('index')) }}" class="btn btn-agendamento rounded-pill px-5">
+                                <i class="bi bi-calendar-plus"></i> Agendamento
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="hero-wave hero-wave-desktop" aria-hidden="true">
+            <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
+                <path d="M0,100 C300,150 600,20 900,90 C1150,140 1300,100 1440,80 L1440,150 L0,150 Z" class="wave-fill" />
+                <path d="M0,100 C300,150 600,20 900,90 C1150,140 1300,100 1440,80" class="wave-stroke" />
+            </svg>
+        </div>
+        <div class="hero-wave hero-wave-mobile" aria-hidden="true">
+            <svg viewBox="0 0 412 90" preserveAspectRatio="none">
+                <path d="M0,62 C80,25 180,25 260,48 C330,68 370,62 412,45 L412,90 L0,90 Z" class="wave-fill" />
+                <path d="M0,62 C80,25 180,25 260,48 C330,68 370,62 412,45" class="wave-stroke" />
+            </svg>
+        </div>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="container mt-4">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category if category != 'message' else 'info' }} alert-dismissible fade show rounded-pill text-center" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% if current_user.is_authenticated and current_user.papel != 'admin' %}
+        <div class="welcome-message text-center">
+            <h1><i class="bi bi-flower1"></i> Olá, {{ current_user.nome }}!</h1>
+            <p>Bem-vinda ao seu espaço de beleza</p>
+        </div>
+
+        <section class="agendamentos-section container my-5">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title"><i class="bi bi-calendar-check"></i> Meus Agendamentos</h2>
+                <div class="title-divider"></div>
+                <p class="section-subtitle mt-2">Acompanhe seus horários e status</p>
+            </div>
+
+            <div id="feedbackMessage" class="container mb-3"></div>
+
+            {% if agendamentos %}
+                <div class="row justify-content-center" id="listaAgendamentos">
+                    <div class="col-md-10 col-lg-8">
+                        <div class="agendamentos-list">
+                            {% for a in agendamentos %}
+                            <div class="agendamento-card-modern d-flex align-items-center justify-content-between p-3 mb-3" style="background: #fff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="card-icon" style="font-size: 1.5rem; color: #d4af37;">
+                                        <i class="bi bi-calendar-heart"></i>
+                                    </div>
+                                    <div class="card-info d-flex flex-column">
+                                        <strong>{{ a.procedimento }}</strong>
+                                        <span class="text-muted small">
+                                            <i class="bi bi-calendar-date"></i> {{ a.data.strftime('%d/%m/%Y') }} às <i class="bi bi-clock"></i> {{ a.horario }}
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="card-status">
+                                        <span class="badge-status {{ a.status }} px-3 py-1 rounded-pill small">
+                                            {% if a.status == 'pendente' %}
+                                                <i class="bi bi-hourglass-split"></i> Pendente
+                                            {% elif a.status == 'confirmado' %}
+                                                <i class="bi bi-check-circle"></i> Confirmado
+                                            {% else %}
+                                                <i class="bi bi-x-circle"></i> Cancelado
+                                            {% endif %}
+                                        </span>
+                                    </div>
+
+                                    {% if a.status in ['pendente', 'confirmado'] %}
+                                        <button class="btn btn-sm btn-outline-danger btn-cancelar rounded-pill px-3" data-id="{{ a.id }}">
+                                            <i class="bi bi-trash"></i> Cancelar
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="empty-state text-center">
+                    <i class="bi bi-calendar-x display-1 text-muted"></i>
+                    <h4 class="mt-3">Nenhum agendamento encontrado</h4>
+                    <p>Que tal marcar seu primeiro horário?</p>
+                    <a href="{{ url_for('agendamento') }}" class="btn btn-agendamento rounded-pill px-4">
+                        <i class="bi bi-calendar-plus"></i> Agendar agora
+                    </a>
+                </div>
+            {% endif %}
+        </section>
+        {% endif %}
+
+        <section class="studio-section">
+            <div class="container studio-container text-center">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
+                        <h2 class="section-title studio-title mb-3">Conheça o Studio JOICYMARA MARQUES</h2>
+                        <p class="section-subtitle mb-5">NO STUDIO JM TODOS OS DETALHES</p>
+                    </div>
+                </div>
+                <div class="row studio-gallery justify-content-center">
+                    <div class="col-lg-4 col-md-6 mb-4 d-flex">
+                        <img src="{{ url_for('static', filename='img/ATENDIMENTO.png') }}" class="studio-img" alt="Atendimento">
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4 d-flex">
+                        <img src="{{ url_for('static', filename='img/ACESSORIOS.png') }}" class="studio-img" alt="Acessórios">
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4 d-flex">
+                        <img src="{{ url_for('static', filename='img/pessoas.png') }}" class="studio-img" alt="Pessoas">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="message-section">
+            <div class="container message-container">
+                <div class="row align-items-center justify-content-center g-4">
+                    <div class="col-10 col-md-4 text-center">
+                        <img src="{{ url_for('static', filename='img/logo-jm.png') }}" class="message-img" alt="Logo">
+                    </div>
+                    <div class="col-11 col-md-6">
+                        <div class="message-card text-center">
+                            <p>Cada detalhe é pensado com<br>muito carinho para proporcionar<br>relaxamento, bem-estar e realçar<br>a beleza das nossas clientes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="procedures-section">
+            <div class="container procedures-container text-center">
+                <h2 class="procedures-title">Conheça os nossos procedimentos<br>em destaque!</h2>
+                <div class="procedures-gallery">
+                    <img src="{{ url_for('static', filename='img/sombrancelhaecilios.jpeg') }}" class="procedure-img" alt="Cílios">
+                    <img src="{{ url_for('static', filename='img/sombrancelhaecilios2.jpeg') }}" class="procedure-img" alt="Olho">
+                    <img src="{{ url_for('static', filename='img/sombrancelhaecilios3.jpeg') }}" class="procedure-img" alt="Sobrancelha">
+                    <img src="{{ url_for('static', filename='img/sombrancelhaecilios4.jpeg') }}" class="procedure-img" alt="Procedimento">
+                    <img src="{{ url_for('static', filename='img/sombrancelhaecilios5.jpeg') }}" class="procedure-img" alt="Teste">
+                    <img src="{{ url_for('static', filename='img/ATENDIMENTO.png') }}" class="procedure-img" alt="Tufinho">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 20px;">
+                <div class="modal-body text-center p-4">
+                    <i class="bi bi-exclamation-triangle text-danger display-4 mb-3 d-block"></i>
+                    <h5 class="modal-title mb-2">Deseja cancelar este agendamento?</h5>
+                    <p class="text-muted small">O horário ficará disponível imediatamente para outras clientes.</p>
+                    <div class="d-flex justify-content-center gap-2 mt-4">
+                        <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Voltar</button>
+                        <button type="button" id="confirmCancelBtn" class="btn btn-danger rounded-pill px-4">Confirmar Cancelamento</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-section">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <span class="footer-logo-j">J</span><span class="footer-logo-m">M</span>
+                </div>
+                <h2>Joycimara Marques</h2>
+                <p>Cílios &amp; Sobrancelhas</p>
+            </div>
+            <div class="footer-info">
+                <a href="https://instagram.com/" target="_blank" class="footer-item">
+                    <span class="footer-info-title">Instagram</span>
+                    <strong>@joycimara_marques</strong>
+                </a>
+                <a href="https://wa.me/5531999999999" target="_blank" class="footer-item">
+                    <span class="footer-info-title">WhatsApp</span>
+                    <strong>(31) 98723-3412</strong>
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Studio JM. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

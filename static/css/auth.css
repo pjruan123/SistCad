@@ -1,0 +1,36 @@
+.auth-body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0,63,29,0.82), rgba(0,63,29,0.82)),
+                url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1400&q=80");
+    background-position: center; background-size: cover;
+}
+.auth-wrap {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 28px;
+}
+.auth-card {
+    width: min(100%, 440px);
+    background: var(--branco);
+    border: 1px solid rgba(185,130,46,0.25);
+    border-radius: 14px;
+    box-shadow: 0 14px 35px rgba(0,63,29,0.08);
+    padding: 26px;
+}
+.auth-card h1 {
+    font-family: var(--fonte-titulo);
+    color: var(--texto-verde);
+}
+.auth-card label {
+    margin-top: 14px; margin-bottom: 6px;
+    font-family: var(--fonte-texto);
+    color: var(--texto-verde);
+}
+.auth-links {
+    display: flex; justify-content: space-between; gap: 12px;
+    margin-top: 18px; font-size: 0.9rem;
+}
+.auth-links a { color: var(--texto-verde); }
+
+@media (max-width: 576px) {
+    .auth-card { padding: 20px; }
+}
